@@ -10,5 +10,5 @@
 #   - Each name must be unique
 
 students:
-  - alice_smith
-  - bob_jones
+#  - alice_smith
+#  - bob_jones
