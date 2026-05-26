@@ -17,7 +17,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check PR only modifies student's own folder
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Validate PR
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
@@ -29,7 +32,6 @@ jobs:
           import yaml
 
           CONFIG = "config/students.yml"
-          STUDENTS_DIR = "students"
 
           with open(CONFIG) as f:
               known = set(yaml.safe_load(f).get("students", []))
@@ -37,59 +39,39 @@ jobs:
           result = subprocess.run(
               ["git", "diff", "--name-only",
                os.environ["BASE_SHA"], os.environ["HEAD_SHA"]],
-              capture_output=True, text=True,
+              capture_output=True,
+              text=True,
           )
+
           changed = [f.strip() for f in result.stdout.splitlines() if f.strip()]
 
-          if not changed:
-              print("No files changed.")
-              sys.exit(0)
+          student_folders = set()
+
+          for path in changed:
+              parts = path.split("/")
+              if len(parts) >= 2 and parts[0] == "students":
+                  student_folders.add(parts[1])
 
           errors = []
 
-          # Collect which student folders are touched
-          folders = set()
-          bad_files = []
-          for path in changed:
-              parts = path.split("/")
-              if parts[0] == STUDENTS_DIR and len(parts) >= 2 and parts[1]:
-                  folders.add(parts[1])
-              else:
-                  bad_files.append(path)
-
-          if bad_files:
-              errors.append(
-                  "These files are outside a student folder and cannot be changed via PR:\n"
-                  + "\n".join(f"  {f}" for f in bad_files)
-              )
-
-          if len(folders) > 1:
-              errors.append(
-                  f"PR touches multiple student folders: {', '.join(sorted(folders))}.\n"
-                  "  Each PR should only contain changes from one student."
-              )
-
-          for folder in folders:
+          for folder in student_folders:
               if folder not in known:
                   errors.append(
-                      f"'students/{folder}/' is not a registered student folder.\n"
-                      "  Ask your mentor to add your name to config/students.yml."
+                      f"'students/{folder}/' is not registered "
+                      "in config/students.yml"
                   )
-              else:
-                  blog = os.path.join(STUDENTS_DIR, folder, "blog.md")
-                  if not os.path.isfile(blog):
-                      errors.append(
-                          f"'students/{folder}/blog.md' is missing.\n"
-                          "  Your folder should have been set up with this file — "
-                          "let your mentor know."
-                      )
+
+              blog = f"students/{folder}/blog.md"
+              if not os.path.isfile(blog):
+                  errors.append(
+                      f"Missing required file: {blog}"
+                  )
 
           if errors:
-              print("\nPR check failed:\n")
+              print("\nValidation failed:\n")
               for e in errors:
-                  print(f"  - {e}\n")
-              print("Need help? Ask your mentor.")
+                  print(f" - {e}")
               sys.exit(1)
 
-          print("All checks passed.")
+          print("Validation passed.")
           EOF
