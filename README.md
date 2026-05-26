@@ -16,6 +16,10 @@ Work only inside your own folder.
 
 ### Getting Started
 
+If you are new to Git and GitHub, these are good starting points:
+- [GitHub Hello World guide](https://guides.github.com/activities/hello-world/)
+- [Git crash course (YouTube, 30 min)](https://www.youtube.com/watch?v=SWYqp7iY_Tc)
+
 Clone the repository:
 
 ```bash
@@ -30,6 +34,8 @@ git checkout -b alice/work
 ```
 
 You may reuse the same branch for all work or create new branches whenever useful.
+
+> **Note:** Do not clone this repository inside a folder synced with iCloud, Google Drive, or any other file sync service — synced folders can corrupt or delete Git files.
 
 ---
 
@@ -55,8 +61,7 @@ git commit -m "update blog and figures"
 git push
 ```
 
-Then open a Pull Request on GitHub. You may open PRs frequently, occasionally, or whenever you want feedback — there is no required schedule.
-Ask your mentor who will merge the PR? It can be you or your fellow intern or your mentor.
+Then open a Pull Request on GitHub. You may open PRs frequently, occasionally, or whenever you want feedback — there is no required schedule. Ask your mentor whether they will merge PRs themselves, or whether you or a fellow intern should do it.
 ---
 
 ### Blog Entries
@@ -87,6 +92,12 @@ For the blog article, use these as a guide:
 - What is the approach / methodology?
 - What is next?
 - Brief conclusion and references
+
+---
+
+### Documents and Spreadsheets
+
+For shared documents, spreadsheets, or large files that don't belong in GitHub, create a folder named after your last name in **Google Drive or Box** and share it with your mentor.
 
 ---
 
