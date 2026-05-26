@@ -1,86 +1,121 @@
-
 # Summer Student Repository
 
-Hello and welcome! Here are some links and instructions to help you around.
+This repository is used to document research progress, share code and figures, and store final deliverables during the internship.
 
-## Slack
-We will invite you to our slack workspace. Please let us know if you have not been invited. 
+Each student has a folder under:
 
-## Github
-We recommend these tutorials if you are new to git: 
+```text
+students/firstname_lastname/
+```
 
-- [https://guides.github.com/activities/hello-world/](https://guides.github.com/activities/hello-world/)
-- [https://www.youtube.com/watch?v=SWYqp7iY_Tc](https://www.youtube.com/watch?v=SWYqp7iY_Tc)
+Work only inside your own folder.
 
-Please do not add large files to git repositories if possible. Please ask your supervisor where to put them. Please do not clone a git repository in a directory that is synced with icloud or any other sync mechanism, as files might be deleted.
+---
 
-### Process for Github:
-- Fork the https://github.com/Rbhupi/summer2025 repository.  This will create a “copy” of the repository in your own profile.  (ex. https://github.com/jswantek/summer2022)
-- Clone forked repository to your machine (ex. git clone git@github.com:jswantek/summer2022.git)
-- Make code changes on the main (or another branch) in your own forked environment (i.e git commit)
-- Push your changes to your own forked repository (git push origin <branch>)
-- Then within your fork on github create a “Pull Request” 
+## For Students
 
- <img src="https://github.com/waggle-sensor/summer-template/raw/main/resources/fork1.png" width="600"></br>
- 
-- You will see that the proposed merge is from jswantek/summer2022:main -> waggle-sensor/summer2022:main.  Click “Create pull request”
+### Getting Started
 
-<img src="https://github.com/waggle-sensor/summer-template/raw/main/resources/fork2.png" width="600"></br>
+Clone the repository:
 
-<img src="https://github.com/waggle-sensor/summer-template/raw/main/resources/fork3.png" width="600"></br>
+```bash
+git clone <repo-url>
+cd <repo>
+```
 
-- After the change is approved, click the “Merge pull request”.  This will merge your change into the `Rbhupi/summer2025:main along with everyone else’s work in a safe way.
+Create a branch for your work:
 
-- Repeat the above process for each change you want to make.
+```bash
+git checkout -b alice/work
+```
 
+You may reuse the same branch for all work or create new branches whenever useful.
 
-> *note:* your own fork will get “out-of-date” with the main waggle-sensor/summer2022 repository so in your forked repository in GitHub you can click the “Fetch upstream” to have the upstream repository merged into your fork. (see attached image)
->
-> <img src="https://github.com/waggle-sensor/summer-template/raw/main/resources/fork4.png" width="600"></br>
+---
 
-https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/merging-a-pull-request
+### Your Folder
 
+Inside your folder you can add anything:
 
+- blog entries
+- notes
+- figures and pictures
+- scripts and notebooks
+- presentations, reports, posters, papers
 
-## Google Drive or Box
-If you need to create documents, spreadsheets and share them, feel free to create a folder named per your lastname in box or google drive and share it.
+Use whatever file formats make sense. **Large datasets should not be committed to GitHub** — ask your mentor where to put them.
 
-## Daily blogs
-This is a space to keep your daily blogs and maintain a `README.md` with links to resources that may be shared using non-Git avenues. Please create a folder named per your last name.
+---
 
-[Here](https://github.com/RBhupi/summer2025/tree/master/username) is an example of a student space organization. Please follow it in organizing your space.
+### Updating Your Work
 
-## Deliverables
+```bash
+git add students/alice_smith/
+git commit -m "update blog and figures"
+git push
+```
 
-For our SULI students there are four required deliverables:
+Then open a Pull Request on GitHub. You may open PRs frequently, occasionally, or whenever you want feedback — there is no required schedule.
+Ask your mentor who will merge the PR? It can be you or your fellow intern or your mentor.
+---
 
-1. Oral or Poster Presentation
-2. One-page peer review
-3. Abstract for General Audience
-4. Research Report Paper
+### Blog Entries
 
-(Detailed instructions should have been shared with these students)
+Update `blog.md` regularly with what you worked on, problems encountered, results, and next steps. Short entries are completely fine.
 
+---
 
-For all other interns we expect at the end of their internship:
+### Deliverables
 
-1. Oral presentation
-2. Abstract for General Audience (on github)
-3. A white paper OR a real publication. In either case the daily blog on github can serve as a basis for the content. 4-8 pages, please use the LaTeX template or the overleaf template. No Microsoft Word please.  [https://www.ieee.org/conferences/publishing/templates.html](https://www.ieee.org/conferences/publishing/templates.html)
-4. Blog-style science article
+Upload final deliverables to:
 
-Take a look at existing blog articles as examples and use the following points as a guidance:
+```text
+students/alice_smith/deliverables/
+```
 
+Any format is fine — pdf, pptx, tex, docx, md, zip. Use clear filenames.
+
+**SULI students** — three required deliverables:
+1. Poster (PPT/PDF)
+2. Research Report Paper (DOCX/PDF) (This is technical documentation)
+3. Blog-style science article on your work in markdown with no more than 5 figures or pictures. This is documenting your experiences as well as work for non-technical audiences.
+
+For the blog article, use these as a guide:
 - Who am I and what am I doing?
-- Whys is what I am doing important?
-- What sensors, instruments, and data am I using to solve this challenge?
+- Why is this work important?
+- What instruments, sensors, or data am I using?
 - What is the approach / methodology?
 - What is next?
-- A brief conclusion
-- Reference
+- Brief conclusion and references
 
-This is essentially a mini paper, but more informal, like a blog.
+---
 
+### Communication
 
+Use **Slack** for questions, updates, and meeting coordination.
 
+Use **GitHub Pull Requests** for code review, figure feedback, and keeping a record of your progress.
 
+---
+
+## For Mentors
+
+### Setup
+
+1. Create a new repository from this template
+2. Add student names to `config/students.yml`:
+
+```yaml
+students:
+  - alice_smith
+  - bob_jones
+```
+
+3. Commit and push — student folders will be created automatically
+4. Add students as repository collaborators (Settings → Collaborators)
+
+### Mentoring
+
+Students work in their own folders and open Pull Requests whenever they want feedback or want to merge work. Review blog updates, figures, scripts, and reports through PR comments.
+
+The repository is intentionally lightweight — a shared research notebook and archive, not a project management system.
