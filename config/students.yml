@@ -5,7 +5,7 @@
 # create a folder under students/ for any new names. Existing folders are never modified.
 #
 # Rules:
-#   - Use only lowercase letters and a single underscore between first and last name
+#   - Use underscore between first and last name
 #   - No spaces, hyphens, dots, or numbers
 #   - Each name must be unique
 
