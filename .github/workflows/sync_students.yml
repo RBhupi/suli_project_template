@@ -30,7 +30,6 @@ jobs:
         run: |
           python - <<'EOF'
           import os
-          import re
           import shutil
           import sys
           import yaml
@@ -38,7 +37,6 @@ jobs:
           CONFIG = "config/students.yml"
           TEMPLATE = "_template_student"
           STUDENTS_DIR = "students"
-          NAME_PATTERN = re.compile(r'^[a-z]+_[a-z]+$')
 
           with open(CONFIG) as f:
               data = yaml.safe_load(f)
@@ -50,20 +48,13 @@ jobs:
 
           errors = []
           for name in students:
-              if not NAME_PATTERN.match(str(name)):
-                  errors.append(
-                      f"  '{name}' is not valid. Use firstname_lastname format "
-                      f"(lowercase letters and one underscore only)."
-                  )
+              if ' ' in str(name):
+                  errors.append(f"  '{name}' contains a space. Use an underscore instead.")
 
           if errors:
-              print("ERROR: Invalid student names found in config/students.yml:\n")
+              print("ERROR: Invalid student names in config/students.yml:\n")
               for e in errors:
                   print(e)
-              print(
-                  "\nPlease fix the names and push again. "
-                  "No folders were created."
-              )
               sys.exit(1)
 
           created = []

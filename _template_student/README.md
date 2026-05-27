@@ -8,7 +8,9 @@ This folder contains all your research work for the internship. Keep it organize
 |---|---|
 | `blog.md` | Weekly research log — update this every week before submitting your PR |
 | `notes.md` | Personal scratchpad — references, commands, ideas, meeting notes |
-| `pictures/` | Instrument photos, plots, screenshots for your poster or report |
+| `notebooks/` | Jupyter notebooks and analysis scripts |
+| `figures/` | Generated plots and figures for your report or poster |
+| `pictures/` | Instrument photos and field/lab photos |
 | `deliverables/` | Final outputs — upload your poster, report, and abstract here before you leave |
 
 ## Weekly Workflow
